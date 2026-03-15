@@ -1,0 +1,232 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800;14..32,900&family=Outfit:wght@400;500;600;700;800;900&display=swap');
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+/* ═══════════════════════════════════════════
+   DESIGN TOKENS
+═══════════════════════════════════════════ */
+@theme {
+  --font-sans:    'Inter', system-ui, -apple-system, sans-serif;
+  --font-display: 'Outfit', 'Inter', system-ui, sans-serif;
+  --font-mono:    ui-monospace, 'JetBrains Mono', monospace;
+}
+
+/* ═══════════════════════════════════════════
+   BASE
+═══════════════════════════════════════════ */
+*, *::before, *::after { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background: #ffffff;
+  color: #334155;      /* slate-700 - tinted towards teal-gray */
+  line-height: 1.67;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-display);
+  color: #042f2e;      /* Primary Dark Teal */
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+}
+
+/* ═══════════════════════════════════════════
+   CARD / GLASS (light)
+═══════════════════════════════════════════ */
+.card {
+  background: #ffffff;
+  border: 1px solid #f3f4f6;
+  border-radius: 28px;
+  box-shadow: 0 10px 25px -5px rgba(4, 47, 46, 0.08), 0 4px 10px -6px rgba(4, 47, 46, 0.04);
+  transition: all 0.5s cubic-bezier(0.16,1,0.3,1);
+}
+.card:hover {
+  box-shadow: 0 20px 35px -5px rgba(4, 47, 46, 0.12), 0 8px 15px -6px rgba(4, 47, 46, 0.06);
+  border-color: #e5e7eb;
+  transform: translateY(-4px) scale(1.01);
+}
+
+/* ═══════════════════════════════════════════
+   FEATURE CARD (spotlight hover)
+═══════════════════════════════════════════ */
+.feature-card {
+  position: relative;
+  background: #ffffff;
+  border: 1px solid #f3f4f6;
+  border-radius: 36px;
+  padding: 36px;
+  overflow: hidden;
+  box-shadow: 0 12px 30px -8px rgba(4, 47, 46, 0.1);
+  transition: all 0.6s cubic-bezier(0.16,1,0.3,1);
+  cursor: default;
+}
+.feature-card:hover {
+  border-color: #e5e7eb;
+  box-shadow: 0 25px 50px -12px rgba(4, 47, 46, 0.2); /* shadow-2xl with dark teal tint */
+  transform: translateY(-6px) scale(1.01);
+}
+
+/* ═══════════════════════════════════════════
+   BUTTONS — no AI gradients, natural palette
+═══════════════════════════════════════════ */
+
+/* Primary: Brand Teal — clean, confident */
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 13px 32px;
+  background: #0d9488;
+  color: #ffffff;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 0.875rem;
+  border-radius: 999px;
+  border: 1.5px solid #0d9488;
+  cursor: pointer;
+  letter-spacing: -0.01em;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 10px 25px -5px rgba(13, 148, 136, 0.2);
+}
+.btn-primary:hover {
+  background: #0f766e;
+  border-color: #0f766e;
+  box-shadow: 0 20px 30px -5px rgba(13, 148, 136, 0.3);
+  transform: translateY(-2px);
+}
+.btn-primary:active { transform: scale(0.98); }
+
+/* Secondary: ghost pill */
+.btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 13px 28px;
+  background: transparent;
+  color: #374151;
+  font-family: var(--font-sans);
+  font-weight: 500;
+  font-size: 0.875rem;
+  border-radius: 999px;
+  border: 1.5px solid #d1d5db;
+  cursor: pointer;
+  letter-spacing: -0.01em;
+  transition: all 0.2s ease;
+}
+.btn-secondary:hover {
+  background: #f9fafb;
+  border-color: #9ca3af;
+  transform: translateY(-1px);
+}
+.btn-secondary:active { transform: scale(0.98); }
+
+/* ═══════════════════════════════════════════
+   DOTS GRID (light)
+═══════════════════════════════════════════ */
+.bg-dot-pattern {
+  background-image: radial-gradient(#e5e7eb 1px, transparent 1px);
+  background-size: 24px 24px;
+}
+
+/* ═══════════════════════════════════════════
+   MARQUEE
+═══════════════════════════════════════════ */
+@keyframes marquee {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+.animate-marquee { animation: marquee 30s linear infinite; }
+
+/* ═══════════════════════════════════════════
+   ENTRANCE ANIMATIONS
+═══════════════════════════════════════════ */
+.animate-in {
+  animation: fade-rise 0.85s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  opacity: 0;
+}
+.animate-in.d1 { animation-delay: 0.10s; }
+.animate-in.d2 { animation-delay: 0.22s; }
+.animate-in.d3 { animation-delay: 0.34s; }
+.animate-in.d4 { animation-delay: 0.46s; }
+.animate-in.d5 { animation-delay: 0.58s; }
+
+@keyframes fade-rise {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ═══════════════════════════════════════════
+   FLOAT
+═══════════════════════════════════════════ */
+@keyframes float-y {
+  0%, 100% { transform: translateY(0px); }
+  50%       { transform: translateY(-10px); }
+}
+.float-slow { animation: float-y 8s ease-in-out infinite; }
+.float-med  { animation: float-y 6s ease-in-out infinite 1.5s; }
+.float-fast { animation: float-y 5s ease-in-out infinite 0.8s; }
+
+/* ═══════════════════════════════════════════
+   PING PULSE
+═══════════════════════════════════════════ */
+@keyframes ping-ring {
+  0%        { transform: scale(1); opacity: 1; }
+  75%, 100% { transform: scale(2); opacity: 0; }
+}
+.animate-ping-slow { animation: ping-ring 2.5s cubic-bezier(0,0,0.2,1) infinite; }
+
+/* ═══════════════════════════════════════════
+   FLUID SVG LINES
+═══════════════════════════════════════════ */
+.fluid-flow-line         { stroke-dasharray: 20 10; animation: flow 22s linear infinite; }
+.fluid-flow-line.reverse { animation: flow-rev 22s linear infinite; }
+@keyframes flow     { from { stroke-dashoffset: 400; } to { stroke-dashoffset: 0; } }
+@keyframes flow-rev { from { stroke-dashoffset: 0; } to { stroke-dashoffset: 400; } }
+
+/* ═══════════════════════════════════════════
+   SCROLLBAR + SELECTION
+═══════════════════════════════════════════ */
+/* ═══════════════════════════════════════════
+   SCROLLBARS (Minimalist)
+   Used globally and via utility classes
+   - .custom-scrollbar: for sidebars/navs
+   - .thin-scroll: for tables/widgets
+═══════════════════════════════════════════ */
+::-webkit-scrollbar {
+  width: 4px;
+  height: 4px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: #e2e8f0; /* Slate-200 */
+  border-radius: 20px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #cbd5e1; /* Slate-300 */
+}
+
+/* Specific utilities for high-density areas */
+.custom-scrollbar::-webkit-scrollbar,
+.thin-scroll::-webkit-scrollbar {
+  width: 3px;
+  height: 3px;
+}
+.custom-scrollbar::-webkit-scrollbar-thumb,
+.thin-scroll::-webkit-scrollbar-thumb {
+  background: #f1f5f9; /* Slate-100 - very subtle */
+}
+.custom-scrollbar:hover::-webkit-scrollbar-thumb,
+.thin-scroll:hover::-webkit-scrollbar-thumb {
+  background: #e2e8f0;
+}
+
+::selection {
+  background: rgba(45, 157, 143, 0.18);
+  color: #064e3b;
+}
