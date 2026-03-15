@@ -40,7 +40,6 @@ const Navbar = () => {
             : "max-w-7xl h-[68px] px-7 shadow-md shadow-gray-200/20 border border-gray-200 rounded-[24px]"
         }`}
       >
-        {/* Left: Logo */}
         <Link
           to="/"
           className="flex items-center gap-3 group select-none shrink-0"
@@ -48,7 +47,7 @@ const Navbar = () => {
           <img
             src="/logo.png"
             alt="WorkNest"
-            className="h-7 transition-transform duration-500 group-hover:scale-105"
+            className="h-9 transition-transform duration-500 group-hover:scale-105"
           />
         </Link>
 

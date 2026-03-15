@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { motion, AnimatePresence } from "framer-motion";
 import {
   Mail,
   Lock,
@@ -29,8 +28,12 @@ const Login = () => {
     setIsSubmitting(true);
     setTimeout(() => {
       setIsSubmitting(false);
-      // Both point to the new admin dashboard for this demo
-      navigate("/app/dashboard");
+      // Redirect based on role for demo purposes
+      if (role === "admin") {
+        navigate("/app/dashboard");
+      } else {
+        navigate("/employee/dashboard");
+      }
     }, 1000);
   };
 
@@ -48,11 +51,11 @@ const Login = () => {
           </Link>
           <h2
             style={{ fontFamily: "'Outfit', sans-serif" }}
-            className="text-3xl font-semibold tracking-tight uppercase tracking-widest"
+            className="text-3xl font-semibold uppercase tracking-widest"
           >
             Welcome back
           </h2>
-          <p className="mt-2 text-sm text-teal-600/60 font-semibold uppercase tracking-wider">
+          <p className="mt-2 text-sm text-teal font-semibold uppercase tracking-wider">
             Enter your credentials to access your dashboard
           </p>
         </div>
@@ -60,11 +63,11 @@ const Login = () => {
         <div className="bg-white py-10 px-8 rounded-[32px] border border-teal-50 shadow-[0_20px_50px_rgba(4,47,46,0.06)]">
           <form className="space-y-6" onSubmit={handleSubmit}>
             <div className="space-y-2">
-              <label className="text-[10px] font-bold text-teal-700/50 uppercase tracking-widest ml-1">
+              <label className="text-[10px] font-bold text-teal uppercase tracking-widest ml-1">
                 Email Address
               </label>
               <div className="relative group">
-                <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none text-teal-300 group-focus-within:text-teal-600 transition-colors">
+                <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none text-teal group-focus-within:text-teal-600 transition-colors">
                   <Mail size={18} />
                 </div>
                 <input
@@ -81,7 +84,7 @@ const Login = () => {
 
             <div className="space-y-2">
               <div className="flex items-center justify-between ml-1">
-                <label className="text-[10px] font-bold text-teal-700/50 uppercase tracking-widest">
+                <label className="text-[10px] font-bold text-teal uppercase tracking-widest">
                   Password
                 </label>
                 <Link
@@ -111,7 +114,7 @@ const Login = () => {
             <button
               type="submit"
               disabled={isSubmitting}
-              className="btn-primary w-full py-4 justify-center text-base shadow-xl shadow-teal-900/10 group"
+              className="btn-primary bg-[#042f2e] w-full py-4 justify-center text-base shadow-xl shadow-teal-900/10 group"
             >
               {isSubmitting ? "Architecting..." : "Sign in"}
               <ArrowRight

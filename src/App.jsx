@@ -31,6 +31,16 @@ import AddEmployee from "./pages/admin/AddEmployee";
 import AddFreelancer from "./pages/admin/AddFreelancer";
 import Teams from "./pages/admin/Teams";
 
+// Employee Portal Pages
+import EmployeeDashboard from "./pages/employee/Dashboard";
+import EmployeeAttendance from "./pages/employee/Attendance";
+import EmployeeTasks from "./pages/employee/Tasks";
+import EmployeeTimeOff from "./pages/employee/TimeOff";
+import EmployeeFinance from "./pages/employee/Finance";
+import EmployeeDocuments from "./pages/employee/Documents";
+import EmployeeSettings from "./pages/employee/Settings";
+import EmployeeNotifications from "./pages/employee/Notifications";
+
 import { ThemeProvider } from "./context/ThemeContext";
 import { GlobalProvider } from "./context/GlobalProvider";
 
@@ -112,6 +122,19 @@ function App() {
               <Route path="notifications" element={<Notifications />} />
               <Route path="settings" element={<Settings />} />
               <Route path="profile" element={<Profile />} />
+            </Route>
+
+            {/* Employee Portal Routes */}
+            <Route path="/employee">
+              <Route index element={<Navigate to="/employee/dashboard" replace />} />
+              <Route path="dashboard" element={<EmployeeDashboard />} />
+              <Route path="attendance" element={<EmployeeAttendance />} />
+              <Route path="tasks" element={<EmployeeTasks />} />
+              <Route path="time-off" element={<EmployeeTimeOff />} />
+              <Route path="finance" element={<EmployeeFinance />} />
+              <Route path="documents" element={<EmployeeDocuments />} />
+              <Route path="notifications" element={<EmployeeNotifications />} />
+              <Route path="settings" element={<EmployeeSettings />} />
             </Route>
           </Routes>
         </Router>
